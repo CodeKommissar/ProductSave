@@ -6,7 +6,7 @@ import * as actions from "../actions";
 import Header from "./Header";
 import Landing from "./Landing";
 import Dashboard from "./Dashboard";
-const ProductNew = () => <h2>ProductNew</h2>
+import ProductNew from "./products/ProductNew";
 
 class App extends Component {
   componentDidMount() {
