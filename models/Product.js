@@ -3,8 +3,8 @@ const { Schema } = mongoose;
 
 const productSchema = new Schema({
   name: String,
-  image: String,
-  url: String,
+  imageUrl: String,
+  productUrl: String,
   price: String,
   _user: { type: Schema.Types.ObjectId, ref: 'User' }
 });
