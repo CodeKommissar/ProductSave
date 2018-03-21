@@ -4,7 +4,7 @@ const requireLogin = require("../middlewares/requireLogin");
 const Product = mongoose.model("products");
 
 module.exports = app => {
-    app.post("/api/products", requireLogin, (req, res) => {
+    app.post("/api/products", requireLogin, async (req, res) => {
       const { name, imageUrl, productUrl, price } = req.body;
 
       const product = new Survey({
@@ -13,5 +13,12 @@ module.exports = app => {
             productUrl,
             price
         })
+
+        try {
+            await product.save();
+            res.send(product);
+        } catch (err) {
+            res.status(422).send(err);
+        }
     });
 };
