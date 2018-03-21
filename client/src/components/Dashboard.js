@@ -1,10 +1,11 @@
 import React from "react";
+import { Grid } from "react-bootstrap";
 
 const Dashboard = () => {
     return (
-        <div>
+        <Grid>
             Dashboard
-        </div>
+        </Grid>
     );
 };
 

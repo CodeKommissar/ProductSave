@@ -10,11 +10,18 @@ class Header extends Component {
         return;
       case false:
         return (
-          <NavItem eventKey={1} href="/auth/google">Login with Google</NavItem>
+          <Nav pullRight>
+            <NavItem eventKey={1} href="/auth/google">Login with Google</NavItem>
+          </Nav>
         );
       default:
         return (
-          <NavItem eventKey={1} href="/api/logout">Logout</NavItem>
+          <Nav pullRight>
+            <NavItem eventKey={1} href="/api/logout">
+                <Link to="/products/new">Add New Product</Link>
+            </NavItem>
+            <NavItem eventKey={2} href="/api/logout">Logout</NavItem>
+          </Nav>
         );
     }
   }
@@ -32,9 +39,7 @@ class Header extends Component {
         </Navbar.Header>
 
         <Navbar.Collapse>
-          <Nav pullRight>
-            {this.renderContent()}
-          </Nav>
+          {this.renderContent()}
         </Navbar.Collapse>
       </Navbar>
     )
