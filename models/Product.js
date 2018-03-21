@@ -9,4 +9,4 @@ const productSchema = new Schema({
   _user: { type: Schema.Types.ObjectId, ref: 'User' }
 });
 
-mongoose.model("producs", productSchema);
+mongoose.model("products", productSchema);
