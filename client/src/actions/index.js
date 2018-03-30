@@ -8,9 +8,9 @@ export const fetchUser = () => async (dispatch) => {
 }
 
 export const submitProduct = (values, history) => async dispatch => {
-    console.log("saving...")
+    console.log("saving...");
     const res = await axios.post("/api/products", values);
-    console.log("saved!")
+    console.log("saved!");
     history.push("/products");
     dispatch({ type: FETCH_USER, payload: res.data });
 };
