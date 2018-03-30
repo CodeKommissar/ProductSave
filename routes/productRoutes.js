@@ -16,7 +16,7 @@ module.exports = app => {
 
         try {
             await product.save();
-            res.send(product);
+            res.send(user);
         } catch (err) {
             res.status(422).send(err);
         }

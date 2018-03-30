@@ -1,6 +1,9 @@
 import React, { Component } from "react";
-import { reduxForm, Field } from "redux-form";
+import { reduxForm, Field, getFormValues } from "redux-form";
 import { Grid, FormGroup, ControlLabel, FormControl, Form, Col, Button } from "react-bootstrap";
+import { withRouter } from "react-router-dom";
+import { connect } from "react-redux";
+import * as actions from "../../actions";
 
 const ReduxFormControl = ({input, meta, ...props}) => {
      return <FormControl {...props} {...input} />
@@ -12,9 +15,7 @@ class ProductForm extends Component {
             <Grid style={{ textAlign: "center" }}>
               <h1>Save New Product</h1>
               <br />
-              <Form horizontal
-                onSubmit={this.props.handleSubmit(values => console.log(values))}
-              >
+              <Form horizontal>
                 <FormGroup controlId="productName">
                   <Col componentClass={ControlLabel} sm={4}>
                     Name of the Product:
@@ -22,7 +23,7 @@ class ProductForm extends Component {
                   <Col sm={6}>
                     <Field
                         type="text"
-                        name="productName"
+                        name="name"
                         component={ReduxFormControl}
                         placeholder="Enter Product Name"
                     />
@@ -35,7 +36,7 @@ class ProductForm extends Component {
                   <Col sm={6}>
                     <Field
                         type="text"
-                        name="productURL"
+                        name="productUrl"
                         component={ReduxFormControl}
                         placeholder="Enter Product URL"
                     />
@@ -48,7 +49,7 @@ class ProductForm extends Component {
                   <Col sm={6}>
                     <Field
                         type="text"
-                        name="productImage"
+                        name="imageUrl"
                         component={ReduxFormControl}
                         placeholder="Enter Product Image URL"
                     />
@@ -61,7 +62,7 @@ class ProductForm extends Component {
                   <Col sm={6}>
                     <Field
                         type="number"
-                        name="productPrice"
+                        name="price"
                         component={ReduxFormControl}
                         placeholder="Enter Product Price"
                         min={0}
@@ -72,7 +73,11 @@ class ProductForm extends Component {
 
                 <FormGroup>
                   <Col smOffset={3} sm={6}>
-                    <Button bsStyle="success" type="submit" bsSize="large"
+                    <Button
+                      bsStyle="success" bsSize="large"
+                      onClick={() => this.props.submitProduct(
+                        this.props.formValues, this.props.history)
+                      }
                     >
                       Save Product
                     </Button>
@@ -84,19 +89,12 @@ class ProductForm extends Component {
     }
 }
 
-export default reduxForm({
-  form: "productForm"
-})(ProductForm);
-
-/*
-<form
-  onSubmit={this.props.handleSubmit(values => console.log(values))}
->
-  <Field
-      type="text"
-      name="surveyTitle"
-      component="input"
-  />
-  <button type="submit">Submit</button>
-</form>
-*/
+const mapStateToProps = state => ({
+  formValues: getFormValues('my-very-own-form')(state),
+});
+const formConfiguration = {
+  form: 'my-very-own-form',
+}
+export default connect(mapStateToProps, actions)(
+  reduxForm(formConfiguration)(withRouter(ProductForm))
+);
