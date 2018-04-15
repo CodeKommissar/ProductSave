@@ -1,0 +1,34 @@
+.Landing {
+    color: white;
+    background-image: url("/product_save.png");
+    background-size: cover;
+    background-position: center center;
+    height: 100vh;
+    z-index: -10;
+    margin-top: -20px;
+}
+
+.Landing .overlay {
+    text-align: center;
+    position: absolute;
+    background-color: rgba(0, 0, 0, 0.7);
+    height: 100%;
+    width: 100%;
+}
+
+.Landing .overlay .vertical-center {
+    height: 70%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.Landing .overlay .vertical-center h1 {
+    font-size: 5rem;
+}
+
+.Landing .overlay .vertical-center p {
+    font-size: 3rem;
+    text-decoration: underline;
+}

@@ -1,13 +1,22 @@
 import React, { Component } from "react";
-import { Grid } from "react-bootstrap";
+import { Button } from "react-bootstrap";
+import "./Landing.css";
 
 class Landing extends Component {
   render() {
     return (
-      <Grid style={{ textAlign: "center" }}>
-        <h1>ProductSave</h1>
-        Save your favorite Products!
-      </Grid>
+      <div className="Landing">
+        <div className="overlay">
+          <div className="vertical-center">
+            <h1>ProductSave</h1>
+            <p>Save your favorite Products!</p>
+            <br/>
+            <Button bsStyle="primary" bsSize="large" href="/auth/google">
+              Login with Google
+            </Button>
+          </div>
+        </div>
+      </div>
     )
   }
 }

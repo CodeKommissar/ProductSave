@@ -1,10 +1,11 @@
 import React from "react";
 import { Grid } from "react-bootstrap";
+import SurveyList from "./products/ProductList";
 
 const Dashboard = () => {
     return (
         <Grid>
-            Dashboard
+            <SurveyList />
         </Grid>
     );
 };
