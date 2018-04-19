@@ -7,6 +7,7 @@ import Header from "./Header";
 import Landing from "./Landing";
 import Dashboard from "./Dashboard";
 import ProductNew from "./products/ProductNew";
+import ProductEdit from "./products/ProductEdit";
 
 class App extends Component {
   componentDidMount() {
@@ -22,6 +23,7 @@ class App extends Component {
             <Route exact path="/" component={Landing} />
             <Route exact path="/products" component={Dashboard} />
             <Route path="/products/new" component={ProductNew} />
+            <Route path="/products/edit" component={ProductEdit} />
           </div>
         </BrowserRouter>
       </div>

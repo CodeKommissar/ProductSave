@@ -30,11 +30,27 @@ module.exports = app => {
     });
 
     app.delete("/api/products/:product_id", requireLogin, async (req, res) => {
-        console.log("deleting product " + req.params.product_id)
-        
         const product = await Product.remove({ _id: req.params.product_id });
         const products = await Product.find({ _user: req.user.id });
 
         res.send(products);
+    });
+
+    app.put("/api/products/:product_id", requireLogin, async (req, res) => {
+        const { name, imageUrl, productUrl, price } = req.body;
+
+        const product = await Product.findById(req.params.product_id);
+        product.name = name;
+        product.imageUrl = imageUrl;
+        product.productUrl = productUrl;
+        product.price = price;
+
+        try {
+            await product.save();
+            const products = await Product.find({ _user: req.user.id });
+            res.send(products);
+        } catch (err) {
+            res.status(422).send(err);
+        }
     });
 };

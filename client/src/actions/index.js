@@ -25,3 +25,10 @@ export const deleteProduct = (product_id) => async dispatch => {
 
     dispatch({ type: FETCH_PRODUCTS, payload: res.data });
 };
+
+export const editProduct = (values, history) => async dispatch => {
+    const res = await axios.put("/api/products/" + values._id, values);
+
+    history.push("/products");
+    dispatch({ type: FETCH_USER, payload: res.data });
+};
